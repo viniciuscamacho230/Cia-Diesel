@@ -1,0 +1,12 @@
+build:
+  image: registry.gitlab.com/cynerd/gitlab-ci-nix
+  cache:
+    key: "nix"
+    paths:
+      - ".nix-cache"
+  before_script:
+    - gitlab-ci-nix-cache-before
+  after_script:
+    - gitlab-ci-nix-cache-after
+  script:
+    - nix run .#pushImage
